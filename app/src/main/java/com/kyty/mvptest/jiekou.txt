@@ -1,0 +1,19 @@
+1、主页
+http://juhe.co/data.php?is=main
+
+ 2、搜索
+ http://juhe.co/data.php?is=soudata&sou_class=%E8%A7%86%E9%A2%91&info=%E6%8A%96%E9%9F%B3&num=0&paixu=0
+ paixu:0 最新 1 最热 2 搜藏最多
+ sou_class：视频 小说 短视频 美图
+
+ 3、子列表  class——0-13   paixu：新上架 热播榜 好评榜  分类：见主页
+ http://juhe.co/data.php?is=getmainlist&page=0&fenlei=%E5%85%A8%E9%83%A8&class=0&paixu=%E6%96%B0%E4%B8%8A%E6%9E%B6
+
+ 4、频道
+ http://juhe.co/data.php?is=pindao
+
+ 5、图片
+ http://juhe.co/data.php?is=imgclass
+
+ 6、小说
+ http://juhe.co/data.php?is=novelclass
