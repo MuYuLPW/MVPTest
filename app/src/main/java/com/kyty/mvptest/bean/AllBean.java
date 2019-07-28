@@ -1,8 +1,9 @@
 package com.kyty.mvptest.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AllBean {
+public class AllBean implements Serializable {
     private String title;
     private List<ListBean> list;
 

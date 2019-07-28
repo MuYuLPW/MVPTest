@@ -1,11 +1,13 @@
 package com.kyty.mvptest.view.fragment;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +22,11 @@ import com.kyty.mvptest.mvp.HomeContract;
 import com.kyty.mvptest.presenter.HomePresent;
 import com.kyty.mvptest.view.MainActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeFragment extends BaseFragment<HomePresent> implements HomeContract.HomeView {
 
@@ -29,6 +34,7 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
     private FrameLayout home_child;
     private List<MainBean.ClassBean> tabList=new ArrayList<>();
     private HomeAdapter adapter;
+    private Map<String,BaseFragment> fragmentList =new HashMap<>();
 
     @Override
     protected HomePresent bindPresenter() {
@@ -93,7 +99,17 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
                     MainBean.MainClassBean mainClassBean = mainBean.getMain_class().get(j);
                     allList.add(new AllBean(mainClassBean.getTitle(),mainClassBean.getList()));
                 }
+                AllFragment allFragment=new AllFragment();
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("bean", (Serializable) allList);
+                allFragment.setArguments(bundle);
+                addFragment(allFragment,tabList.get(i).getTitle());
+                fragmentList.put(tabList.get(i).getTitle(),allFragment);
             }
         }
+    }
+    private void addFragment(BaseFragment fragment, String name){
+        FragmentManager manager = getFragmentManager();
+        manager.beginTransaction().replace(R.id.home_child,fragment,name).commit();
     }
 }

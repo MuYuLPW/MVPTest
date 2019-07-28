@@ -1,6 +1,8 @@
 package com.kyty.mvptest.bean;
 
-public class ListBean {
+import java.io.Serializable;
+
+public class ListBean implements Serializable {
     /**
      * id : 220118
      * title : 模特身材性感美少女约拍光头猛男
