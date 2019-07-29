@@ -32,7 +32,7 @@ public class MyUtils {
                 Request request = chain.request();
                 Log.e("tag", "request====" + request.url());
                 Response proceed = chain.proceed(request);
-                Log.e("tag", "proceed====" + proceed.headers().toString());
+//                Log.e("tag", "proceed====" + proceed.headers().toString());
                 return proceed;
             }
         };
@@ -61,7 +61,7 @@ public class MyUtils {
 
         OkHttpClient mClient = new OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
-                .addInterceptor(logging)//应用程序拦截器
+//                .addInterceptor(logging)//应用程序拦截器
                 .cache(mCache)//添加缓存
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)

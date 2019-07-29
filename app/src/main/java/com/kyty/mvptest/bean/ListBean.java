@@ -196,4 +196,29 @@ public class ListBean implements Serializable {
     public void setVideokey(Object videokey) {
         this.videokey = videokey;
     }
+
+    @Override
+    public String toString() {
+        return "ListBean{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", playnum='" + playnum + '\'' +
+                ", this_num='" + this_num + '\'' +
+                ", img='" + img + '\'' +
+                ", play_img=" + play_img +
+                ", img_arr=" + img_arr +
+                ", time='" + time + '\'' +
+                ", class_id='" + class_id + '\'' +
+                ", url='" + url + '\'' +
+                ", main_ip='" + main_ip + '\'' +
+                ", tag='" + tag + '\'' +
+                ", zan='" + zan + '\'' +
+                ", dashang_arr=" + dashang_arr +
+                ", youzhi='" + youzhi + '\'' +
+                ", sc_num='" + sc_num + '\'' +
+                ", play_ok=" + play_ok +
+                ", paixun_='" + paixun_ + '\'' +
+                ", videokey=" + videokey +
+                '}';
+    }
 }

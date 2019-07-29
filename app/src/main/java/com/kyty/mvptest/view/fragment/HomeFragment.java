@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.kyty.mvptest.R;
 import com.kyty.mvptest.adapter.HomeAdapter;
@@ -63,6 +65,24 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
     }
 
     @Override
+    public void initListener() {
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                MainBean.ClassBean classBean = tabList.get(position);
+                if (classBean.isChecked()) return;
+                for (MainBean.ClassBean bean:tabList) {
+                    bean.setChecked(false);
+                }
+                classBean.setChecked(true);
+                BaseFragment baseFragment = fragmentList.get(classBean.getTitle());
+                addFragment(baseFragment,classBean.getTitle());
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
     public void ShowLoadding() {
         ((MainActivity)activity).ShowLoadding();
     }
@@ -74,7 +94,7 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
 
     @Override
     public void setError(String error) {
-
+        Toast.makeText(activity,error,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -105,7 +125,14 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
                 allFragment.setArguments(bundle);
                 addFragment(allFragment,tabList.get(i).getTitle());
                 fragmentList.put(tabList.get(i).getTitle(),allFragment);
+            }else {
+                ChildFragment childFragment=new ChildFragment();
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("classBean",tabList.get(i));
+                childFragment.setArguments(bundle);
+                fragmentList.put(tabList.get(i).getTitle(),childFragment);
             }
+
         }
     }
     private void addFragment(BaseFragment fragment, String name){

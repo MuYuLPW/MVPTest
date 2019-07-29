@@ -2,6 +2,7 @@ package com.kyty.mvptest.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainBean {
@@ -127,7 +128,7 @@ public class MainBean {
         }
     }
 
-    public static class ClassBean {
+    public static class ClassBean implements Serializable{
         /**
          * class_id : -1
          * title : 全部
@@ -171,7 +172,7 @@ public class MainBean {
             this.tag_arr = tag_arr;
         }
 
-        public static class TagArrBean {
+        public static class TagArrBean implements Serializable {
             /**
              * title : 全部
              * info : 全部
@@ -179,6 +180,23 @@ public class MainBean {
 
             private String title;
             private String info;
+            private boolean isChecked=false;
+
+            public TagArrBean() {
+            }
+
+            public TagArrBean(String title, String info) {
+                this.title = title;
+                this.info = info;
+            }
+
+            public boolean isChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(boolean checked) {
+                isChecked = checked;
+            }
 
             public String getTitle() {
                 return title;
