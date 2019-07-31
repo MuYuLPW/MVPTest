@@ -23,6 +23,7 @@ public class PlayActivity extends AppCompatActivity {
         jzvdStd = (JzvdStd) findViewById(R.id.videoplayer);
         jzvdStd.setUp(url, "", Jzvd.SCREEN_NORMAL);
         jzvdStd.startVideo();
+
     }
 
     @Override

@@ -176,7 +176,6 @@ public class ChildFragment extends BaseFragment<ChildPresent> implements ChildCo
         Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
         if (page!=1){
             adapter.loadMoreFail();
-            page--;
         }
 
     }
@@ -195,8 +194,8 @@ public class ChildFragment extends BaseFragment<ChildPresent> implements ChildCo
             recyclerView.scrollToPosition(0);
             listBeans.clear();
         }
-
         listBeans.addAll(beans);
+        page=listBeans.size();
         adapter.loadMoreComplete();
         adapter.notifyDataSetChanged();
     }
@@ -210,7 +209,6 @@ public class ChildFragment extends BaseFragment<ChildPresent> implements ChildCo
     @Override
     public void onLoadMoreRequested() {
         swip.setEnabled(false);
-        page++;
         getData();
     }
 }

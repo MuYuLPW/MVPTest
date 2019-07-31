@@ -23,6 +23,9 @@ import com.kyty.mvptest.mvp.BaseFragment;
 import com.kyty.mvptest.mvp.HomeContract;
 import com.kyty.mvptest.presenter.HomePresent;
 import com.kyty.mvptest.view.MainActivity;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnCancelListener;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -95,6 +98,21 @@ public class HomeFragment extends BaseFragment<HomePresent> implements HomeContr
     @Override
     public void setError(String error) {
         Toast.makeText(activity,error,Toast.LENGTH_LONG).show();
+        new XPopup.Builder(activity)
+                .dismissOnBackPressed(false)
+                .dismissOnTouchOutside(false)
+                .asConfirm("获取信息失败", error, new OnConfirmListener() {
+                    @Override
+                    public void onConfirm() {
+                        mPresenter.getMianInfo("main");
+                    }
+                }, new OnCancelListener() {
+                    @Override
+                    public void onCancel() {
+                        activity.finish();
+                    }
+                }).show();
+
     }
 
     @Override

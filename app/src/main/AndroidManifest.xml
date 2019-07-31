@@ -16,7 +16,9 @@
         <activity android:name=".PlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"/>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
