@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.kyty.mvptest.R;
 import com.kyty.mvptest.mvp.BaseFragment;
 import com.kyty.mvptest.view.fragment.HomeFragment;
+import com.kyty.mvptest.view.fragment.ScarchFragment;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity{
     private MyDrawerListener drawerListener;
     private HomeFragment homeFragment;
     private LoadingPopupView loading;
+    private ScarchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,16 @@ public class MainActivity extends AppCompatActivity{
                 menuItem.setChecked(true);//设置选型被选中
                 switch (menuItem.getItemId()){
                     case R.id.left_home:
-
+                        if (homeFragment==null){
+                            homeFragment=new HomeFragment();
+                        }
+                        addFragment(homeFragment,"home");
                         break;
                     case R.id.left_search:
-
+                        if (searchFragment==null){
+                            searchFragment = new ScarchFragment();
+                        }
+                        addFragment(searchFragment,"search");
                         break;
                     case R.id.left_model:
 

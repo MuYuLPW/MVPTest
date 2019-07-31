@@ -162,7 +162,9 @@ public class ChildFragment extends BaseFragment<ChildPresent> implements ChildCo
 
     @Override
     public void ShowLoadding() {
-        swip.setRefreshing(true);
+        if (page==0){
+            swip.setRefreshing(true);
+        }
     }
 
     @Override
